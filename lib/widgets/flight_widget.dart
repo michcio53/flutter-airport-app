@@ -10,13 +10,9 @@ class FlightWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text(
-        '${flight.flightShortName}',
-        style: TextStyle(fontSize: 10.0),
-      ),
-      title: Text(flight.destinationCity),
+      title: Text(flight.startingCity + " - " + flight.destinationCity),
       isThreeLine: true,
-      subtitle: Text(flight.startingCity),
+      subtitle: Text(flight.flightShortName + " Date: " + flight.flightDate.toLocal().toString()),
       dense: true,
     );
   }

@@ -1,40 +1,44 @@
-import 'package:airport_flutter/blocs/flight/flight.dart';
-import 'package:airport_flutter/blocs/simple_bloc_delegate.dart';
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:airport_flutter/widgets/flight_widget.dart';
+import 'package:flutter/widgets.dart';
 import 'package:airport_flutter/screens/search_screen.dart';
-import 'package:airport_flutter/screens/main_screen.dart';
+import 'package:airport_flutter/widgets/flight_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:airport_flutter/blocs/flight/flight.dart';
 
-void main() {
-  BlocSupervisor.delegate = SimpleBlocDelegate();
-  runApp(App());
-}
 
-class App extends StatelessWidget {
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Flight App",
-      routes: {
-        '/search': (BuildContext context) => SearchScreen(),
-      },
-      home: MainScreen()
+    return Scaffold(
+      appBar: AppBar(
+          title: Text("Flights"),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchScreen()),
+                );
+              },
+            )
+          ],
+        ),
+        body: _MainScreenPage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class _MainScreenPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _HomePageState();
+  State<StatefulWidget> createState() => _MainScreenPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainScreenPageState extends State<_MainScreenPage> {
   final FlightBloc _flightBloc = FlightBloc();
   final _scrollController = ScrollController();
 
-  _HomePageState() {
+  _MainScreenPageState() {
     _flightBloc.dispatch(Fetch());
   }
 
