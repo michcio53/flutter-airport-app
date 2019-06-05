@@ -15,6 +15,13 @@ class FlightBloc extends Bloc<FlightEvent, FlightState> {
   @override
   Stream<FlightState> mapEventToState(FlightEvent event) async* {
     try {
+      if (event is AddToFavs) {
+        await repository.addFavs(event.flightId);
+        final flights = await repository.fetchFlights();
+        yield FlightLoaded(flights: flights);
+        return;
+    }
+      
       if (currentState is FlightUninitialized) {
         final flights = await repository.fetchFlights();
         yield FlightLoaded(flights: flights);
@@ -24,5 +31,6 @@ class FlightBloc extends Bloc<FlightEvent, FlightState> {
       print(e.toString());
       yield FlightError();
     }
-  }  
+  } 
+
 }

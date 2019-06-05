@@ -8,25 +8,7 @@ import 'package:airport_flutter/blocs/flight/flight.dart';
 
 class MainScreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("Flights"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchScreen()),
-                );
-              },
-            )
-          ],
-        ),
-        body: _MainScreenPage(),
-    );
-  }
+  Widget build(BuildContext context) => _MainScreenPage();
 }
 
 class _MainScreenPage extends StatefulWidget {
@@ -62,6 +44,9 @@ class _MainScreenPageState extends State<_MainScreenPage> {
           itemBuilder: (BuildContext context, int index) {
             return FlightWidget(
               flight: state.props[index],
+              onPressed: (id) {
+                _flightBloc.dispatch(AddToFavs(flightId: id));
+              },
             );
           },
           itemCount: state.props.length,

@@ -10,6 +10,11 @@ class FlightUninitialized extends FlightState {
   String toString() => "Flight uninitialized";
 }
 
+class AddFlightToFavs extends FlightState {
+  @override
+  String toString() => "Flight added to favs";
+}
+
 class FlightError extends FlightState {
   @override
   String toString() => "Flight error";
