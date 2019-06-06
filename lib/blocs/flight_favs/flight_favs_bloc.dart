@@ -5,10 +5,10 @@ import 'package:airport_flutter/blocs/flight_favs/flight_favs_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:airport_flutter/repository.dart';
 
-class FlightBloc extends Bloc<FlightFavsEvent, FlightFavsState> {
+class FlightFavsBloc extends Bloc<FlightFavsEvent, FlightFavsState> {
   final Repository repository = Repository();
 
-  FlightBloc();
+  FlightFavsBloc();
 
   @override
   FlightFavsState get initialState => FlightFavsUninitialized();

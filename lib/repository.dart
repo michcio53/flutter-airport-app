@@ -60,10 +60,11 @@ class Repository {
         return FlightFav(
             id: rawFavFlight['id'],
             flight: Flight(
-              destinationCity: rawFavFlight['destination_city'],
-              startingCity: rawFavFlight['starting_city'],
-              flightShortName: rawFavFlight['flight_short_name'],
-              flightDate: DateTime.parse(rawFavFlight['flight_date'].toString()))
+              id: rawFavFlight['flight']['id'],
+              destinationCity: rawFavFlight['flight']['destination_city'],
+              startingCity: rawFavFlight['flight']['starting_city'],
+              flightShortName: rawFavFlight['flight']['flight_short_name'],
+              flightDate: DateTime.parse(rawFavFlight['flight']['flight_date'].toString()))
             );
             
       }).toList();

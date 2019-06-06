@@ -1,7 +1,7 @@
 import 'package:airport_flutter/blocs/flight_search/fligh_search_event.dart';
 import 'package:airport_flutter/blocs/flight_search/flight_search_state.dart';
 import 'package:airport_flutter/repository.dart';
-import 'package:airport_flutter/widgets/flight_widget.dart';
+import 'package:airport_flutter/widgets/flight_search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:airport_flutter/blocs/flight_search/flight_search.dart';
@@ -96,7 +96,7 @@ class _SearchList extends StatelessWidget {
                 : Expanded(child: ListView.builder(
                     itemCount: state.items.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return FlightWidget(flight: state.items[index]);
+                      return FlightSearchWidget(flight: state.items[index]);
                     }),);
             
           }
